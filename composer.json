@@ -1,0 +1,24 @@
+{
+  "name": "guodont/transrush-sdk",
+  "description": "转运四方php-sdk",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "guodont",
+      "email": "guodont@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "^5.1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.4.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "TransRush": "src"
+    }
+  }
+}
