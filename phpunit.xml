@@ -2,6 +2,7 @@
     <testsuites>
         <testsuite name="UnitTests">
             <directory>tests/Services</directory>
+            <directory>tests/WebHooks</directory>
         </testsuite>
     </testsuites>
 </phpunit>

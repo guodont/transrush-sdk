@@ -1,7 +1,7 @@
 <?php
 namespace TransRush\WebHooks;
 
-use TransRush\Components\WareHouse\WebHookData;
+use TransRush\Components\WebHook\WebHookData;
 use TransRush\Exceptions\TransRushException;
 
 /**
@@ -89,7 +89,8 @@ class TransRushWebHookUtil
             throw new TransRushException("NO_CLIENT_SECRET");
         }
         $webHookData = WebHookData::create($bodyMessage);
-        $encodedString = $webHookData->SeqID . $webHookData->Timestamp . $webHookData->Data . $this->getClientSecret();
+        $key = self::getClientSecret();
+        $encodedString = $webHookData->SeqID . $webHookData->Timestamp . $webHookData->Data . $key;
         return (md5($encodedString) == $webHookData->Signature) ? true : false;
     }
     

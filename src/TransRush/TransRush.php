@@ -3,6 +3,7 @@
 namespace TransRush;
 use TransRush\Services\PreAlertService;
 use TransRush\Services\WareHouseService;
+use TransRush\WebHooks\TransRushWebHookUtil;
 
 /**
  * Created by PhpStorm.
@@ -23,6 +24,11 @@ class TransRush
     public $wareHouseService;
 
     /**
+     * @var TransRushWebHookUtil
+     */
+    public $transRushWebHookUtil;
+
+    /**
      * TransRush constructor.
      * @param array $settings
      */
@@ -30,6 +36,7 @@ class TransRush
     {
         $this->preAlertService = new PreAlertService($settings);
         $this->wareHouseService = new WareHouseService($settings);
+        $this->transRushWebHookUtil = new TransRushWebHookUtil($settings['Key']);
     }
 
 

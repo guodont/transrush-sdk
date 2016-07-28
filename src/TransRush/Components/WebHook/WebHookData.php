@@ -6,7 +6,7 @@
  * Time: 下午4:50
  */
 
-namespace TransRush\Components\WareHouse;
+namespace TransRush\Components\WebHook;
 
 
 use TransRush\Components\Component;

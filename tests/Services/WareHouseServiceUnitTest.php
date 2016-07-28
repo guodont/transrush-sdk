@@ -12,6 +12,8 @@ use TransRush\Components\ResultSet;
 class WareHouseServiceUnitTest extends PHPUnit_Framework_TestCase
 {
     private static $client;
+    
+    private static $transRush;
 
     public static function setUpBeforeClass()
     {
@@ -21,6 +23,12 @@ class WareHouseServiceUnitTest extends PHPUnit_Framework_TestCase
             new Response(200, array(), $getWareHouses)
         ]);
         self::$client->getEmitter()->attach($mock);
+
+        self::$transRush = new \TransRush\TransRush([
+            'Token' => '104FC78C-7923-404C-82CF-CD88153912AG', // Please use your Token .
+            'Env' => 'DEV',
+            'Key' => '123456789',
+        ]);
     }
 
     public function testGetWareHouses()
@@ -35,11 +43,8 @@ class WareHouseServiceUnitTest extends PHPUnit_Framework_TestCase
 
     public function testGetWareHousesFromNet()
     {
-        $transRush = new \TransRush\TransRush([
-            'Token' => '104FC78C-7923-404C-82CF-CD88153912AG', // Please use your Token .
-            'Env' => 'DEV'
-        ]);
-        $wareHouses = $transRush->wareHouseService->getWareHouse();
+        
+        $wareHouses = self::$transRush->wareHouseService->getWareHouse();
         $wareHouse = \TransRush\Components\WareHouse\WareHouse::create(\TransRush\Util\ArrayUtil::object_to_array($wareHouses[0]));
         $this->assertEquals("USLAX", $wareHouse->WareHouseCode);
     }
