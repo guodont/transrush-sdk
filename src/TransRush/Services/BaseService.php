@@ -23,9 +23,9 @@ abstract class BaseService
     {
         return array(
             'User-Agent' => 'E-buy-365 PHP for transRush Library v' . Config::get('settings.version'),
-            'Content-Type' => 'application/json',
+            'Content-Type' => 'text/json; charset=utf-8',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $accessToken
+//            'Authorization' => 'Bearer ' . $accessToken
         );
     }
 
@@ -40,17 +40,20 @@ abstract class BaseService
      * @var string
      */
     private $apiKey;
+    
+    private $env;
 
     /**
-     * Constructor with the option to to supply an alternative rest client to be used
-     * @param string $apiKey - Constant Contact API Key
+     * BaseService constructor.
+     * @param array $settings
      */
-    public function __construct($apiKey)
+    public function __construct(array $settings)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey = $settings['Token'];
+        $this->env = $settings['Env'];
         $this->client = new Client();
     }
-
+    
     /**
      * Get the rest client being used by the service
      * @return Client - GuzzleHTTP Client implementation being used
@@ -60,9 +63,27 @@ abstract class BaseService
         return $this->client;
     }
 
+    /**
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    public function getEnvUrl()
+    {
+        if($this->env == 'PRO') {
+            return Config::get('endpoints.base_url');
+        } else {
+            return Config::get('endpoints.dev_url');
+        }
+    }
+
+
     protected function createBaseRequest($accessToken, $method, $baseUrl) {
         $request = $this->client->createRequest($method, $baseUrl);
-        $request->getQuery()->set("api_key", $this->apiKey);
+//        $request->getQuery()->set("api_key", $this->apiKey);
         $request->setHeaders($this->getHeaders($accessToken));
         return $request;
     }

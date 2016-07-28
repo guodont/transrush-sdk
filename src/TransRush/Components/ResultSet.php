@@ -10,9 +10,9 @@ class ResultSet extends Component
 {
     /**
      * array of result objects returned
-     * @var array
+     * @var string
      */
-    public $Data = array();
+    public $Data;
 
     /**
      * @var string
@@ -24,14 +24,14 @@ class ResultSet extends Component
      */
     public $ResponseCode;
 
-    /**
-     * ResultSet constructor.
-     * @param array $Data
-     */
-    public function __construct(array $Data)
-    {
-        $this->Data = $Data;
-    }
+//    /**
+//     * ResultSet constructor.
+//     * @param array $Data
+//     */
+//    public function __construct(array $Data)
+//    {
+//        $this->Data = $Data;
+//    }
 
 
     public static function create($props)

@@ -17,8 +17,10 @@ class Config
          * REST endpoints
          */
         'endpoints' => array(
+            // 生产环境url
             'base_url' => 'http://open.tr.4px.com/',
-            'test_url' => 'http://sandbox.tr.4px.com/',
+            // 开发测试环境url
+            'dev_url' => 'http://sandbox.tr.4px.com/',
             // 创建预报单
             'create_new1' => 'TRSAPI/PreAlert/CreateNew1',
             // 派送单操作
@@ -61,7 +63,7 @@ class Config
             // 新加坡币
             'sgd' => 'SGD',
             // 日元
-            'JPY' => 'JPY',
+            'jpy' => 'JPY',
             // 英镑
             'gbp' => 'GBP',
             // 韩元
@@ -89,7 +91,6 @@ class Config
             'id_or_object' => 'Only an id or %s object are allowed for this method.',
             'file_extension' => 'Only file extensions of the following are allowed: %s'
         ),
-
         /**
          * Setting the version fo the application used in Rest Calls when setting the version header
          */

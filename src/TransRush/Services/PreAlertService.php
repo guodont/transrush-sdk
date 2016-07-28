@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: guodont
- * Date: 16/7/27
- * Time: 下午5:13
- */
 
 namespace TransRush\Services;
 
-
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Stream\Stream;
-use IPreAlert;
+use TransRush\Services\IPreAlert;
 use TransRush\Components\PreAlert\CreatePreAlert;
 use TransRush\Components\PreAlert\DeletePreAlert;
 use TransRush\Components\RequestSet;
@@ -21,6 +14,7 @@ use TransRush\Util\Config;
 /**
  * Class PreAlertService
  * @package TransRush\Services
+ * @author guodont
  */
 class PreAlertService extends BaseService implements IPreAlert
 {
@@ -30,11 +24,11 @@ class PreAlertService extends BaseService implements IPreAlert
      * @return \TransRush\Components\ResultSet
      * @throws
      */
-    public function createPreAlert($accessToken, CreatePreAlert $createPreAlert, Array $params = array())
+    public function createPreAlert(CreatePreAlert $createPreAlert, Array $params = array())
     {
-        $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.create_new1');
+        $baseUrl = parent::getEnvUrl() . Config::get('endpoints.create_new1');
 
-        $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
+        $request = parent::createBaseRequest(parent::getApiKey(), 'POST', $baseUrl);
         if ($params) {
             $query = $request->getQuery();
             foreach ($params as $name => $value) {
@@ -43,7 +37,7 @@ class PreAlertService extends BaseService implements IPreAlert
         }
 
         $requestSet = new RequestSet();
-        $requestSet->Token = $accessToken;
+        $requestSet->Token = parent::getApiKey();
         $requestSet->Data = $createPreAlert;
 
         $stream = Stream::factory(json_encode($requestSet));
@@ -63,11 +57,11 @@ class PreAlertService extends BaseService implements IPreAlert
      * @return \TransRush\Components\ResultSet
      * @throws
      */
-    public function deletePreAlert($accessToken, DeletePreAlert $deletePreAlert, Array $params = array())
+    public function deletePreAlert(DeletePreAlert $deletePreAlert, Array $params = array())
     {
-        $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.delete_pre_alert');
+        $baseUrl = parent::getEnvUrl() . Config::get('endpoints.delete_pre_alert');
 
-        $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
+        $request = parent::createBaseRequest(parent::getApiKey(), 'POST', $baseUrl);
         if ($params) {
             $query = $request->getQuery();
             foreach ($params as $name => $value) {
@@ -76,7 +70,7 @@ class PreAlertService extends BaseService implements IPreAlert
         }
 
         $requestSet = new RequestSet();
-        $requestSet->Token = $accessToken;
+        $requestSet->Token = parent::getApiKey();
         $requestSet->Data = $deletePreAlert;
 
         $stream = Stream::factory(json_encode($requestSet));

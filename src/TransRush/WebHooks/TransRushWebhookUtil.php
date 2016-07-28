@@ -1,16 +1,16 @@
 <?php
 namespace TransRush\WebHooks;
 
-use TransRush\Components\WareHouse\WebHookData;
+use TransRush\Components\WebHook\WebHookData;
 use TransRush\Exceptions\TransRushException;
 
 /**
- * Class TransRushWebhookUtil
+ * Class TransRushWebHookUtil
  * @package TransRush\WebHooks
  *
  * @author guodont
  */
-class TransRushWebhookUtil
+class TransRushWebHookUtil
 {
 
     /**
@@ -23,7 +23,7 @@ class TransRushWebhookUtil
      * Constructor that creates a validation Object for WebHooks.
      *
      * @param string $clientSecret - The client secret associated with the api key
-     * @return  TransRushWebhookUtil
+     * @return  TransRushWebHookUtil
      */
     function __construct($clientSecret = '')
     {
@@ -32,7 +32,7 @@ class TransRushWebhookUtil
 
 
     /**
-     * TransRushWebhookUtil::getClientSecret()
+     * TransRushWebHookUtil::getClientSecret()
      *
      * @return string - the secret API key
      */
@@ -43,7 +43,7 @@ class TransRushWebhookUtil
 
 
     /**
-     * TransRushWebhookUtil::setClientSecret()
+     * TransRushWebHookUtil::setClientSecret()
      * Set the clientSecret
      *
      * @param string $clientSecret - The client secret associated with the api key
@@ -83,13 +83,14 @@ class TransRushWebhookUtil
      * @return bool
      * @throws TransRushException
      */
-    public function isValidWebhook($bodyMessage)
+    public function isValidWebHook($bodyMessage)
     {
         if ($this->getClientSecret() == null) {
             throw new TransRushException("NO_CLIENT_SECRET");
         }
         $webHookData = WebHookData::create($bodyMessage);
-        $encodedString = $webHookData->SeqID . $webHookData->Timestamp . $webHookData->Data . $this->getClientSecret();
+        $key = self::getClientSecret();
+        $encodedString = $webHookData->SeqID . $webHookData->Timestamp . $webHookData->Data . $key;
         return (md5($encodedString) == $webHookData->Signature) ? true : false;
     }
     
