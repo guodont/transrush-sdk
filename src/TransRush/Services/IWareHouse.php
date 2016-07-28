@@ -1,4 +1,5 @@
 <?php
+namespace TransRush\Services;
 use TransRush\Components\WareHouse\WareHouse;
 
 /**
@@ -13,5 +14,5 @@ interface IWareHouse
      * 查询转运四方在国外的仓库信息
      * @return mixed
      */
-    public function getWareHouse($accessToken);
+    public function getWareHouse();
 }

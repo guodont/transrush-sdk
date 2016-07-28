@@ -24,11 +24,12 @@ class TransRush
 
     /**
      * TransRush constructor.
+     * @param array $settings
      */
-    public function __construct($apiKey)
+    public function __construct(array $settings)
     {
-        $this->preAlertService = new PreAlertService($apiKey);
-        $this->wareHouseService = new WareHouseService($apiKey);
+        $this->preAlertService = new PreAlertService($settings);
+        $this->wareHouseService = new WareHouseService($settings);
     }
 
 

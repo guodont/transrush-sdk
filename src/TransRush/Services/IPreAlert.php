@@ -1,4 +1,6 @@
 <?php
+namespace TransRush\Services;
+
 use TransRush\Components\PreAlert\CreatePreAlert;
 use TransRush\Components\PreAlert\DeletePreAlert;
 
@@ -14,11 +16,11 @@ interface IPreAlert
      * 创建预报
      * @return \TransRush\Components\ResultSet
      */
-    public function createPreAlert($accessToken, CreatePreAlert $createPreAlert, Array $params = array());
+    public function createPreAlert(CreatePreAlert $createPreAlert, Array $params = array());
 
     /**
      * 删除预报
      * @return \TransRush\Components\ResultSet
      */
-    public function deletePreAlert($accessToken, DeletePreAlert $deletePreAlert, Array $params = array());
+    public function deletePreAlert(DeletePreAlert $deletePreAlert, Array $params = array());
 }
