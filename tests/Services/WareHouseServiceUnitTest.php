@@ -11,6 +11,9 @@ use TransRush\Components\ResultSet;
  */
 class WareHouseServiceUnitTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Client
+     */
     private static $client;
     
     private static $transRush;
