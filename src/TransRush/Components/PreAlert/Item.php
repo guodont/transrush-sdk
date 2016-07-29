@@ -72,12 +72,6 @@ class Item extends Component
     public $ItemTotalAmount;
 
     /**
-     * 增值服务类型见增值服务字典表
-     * @var string
-     */
-    public $ValueAddedServiceType;
-
-    /**
      * Factory method to create an Address object from an array
      * @param array $props - Associative array of initial properties to set
      * @return Item
@@ -95,7 +89,6 @@ class Item extends Component
         $item->ItemUnitPrice = parent::getValue($props, "ItemUnitPrice");
         $item->Spec = parent::getValue($props, "Spec");
         $item->Specifications = parent::getValue($props, "Specifications");
-        $item->ValueAddedServiceType = parent::getValue($props, "ValueAddedServiceType");
         return $item;
     }
 }

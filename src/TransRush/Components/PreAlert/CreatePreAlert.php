@@ -173,6 +173,11 @@ class CreatePreAlert extends Component
      */
     public $ITEMS = array();
 
+    /**
+     * 增值服务类型见增值服务字典表
+     * @var string
+     */
+    public $ValueAddedServiceType;
 
     public function addItem($item)
     {
@@ -225,6 +230,8 @@ class CreatePreAlert extends Component
             }
         }
         
+        $preAlert->ValueAddedServiceType = parent::getValue($props, "ValueAddedServiceType");
+
         return $preAlert;
     }
 
