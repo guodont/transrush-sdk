@@ -55,9 +55,15 @@ class Item extends Component
 
     /**
      * 规格
-     * @var string
+     * @var integer
      */
-    public $Spec;
+    public $SpecValue;
+
+    /**
+     * 规格单位
+     * @var integer
+     */
+    public $SpecUnit;
 
     /**
      * 单价
@@ -87,7 +93,8 @@ class Item extends Component
         $item->ItemSKU = parent::getValue($props, "ItemSKU");
         $item->ItemTotalAmount = parent::getValue($props, "ItemTotalAmount");
         $item->ItemUnitPrice = parent::getValue($props, "ItemUnitPrice");
-        $item->Spec = parent::getValue($props, "Spec");
+        $item->SpecValue = parent::getValue($props, "SpecValue");
+        $item->SpecUnit = parent::getValue($props, "SpecUnit");
         $item->Specifications = parent::getValue($props, "Specifications");
         return $item;
     }
