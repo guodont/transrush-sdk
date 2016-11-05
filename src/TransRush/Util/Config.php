@@ -36,7 +36,7 @@ class Config
             // 扣除运费
             'order_pay' => 'TRSAPI/Order/OrderPay',
             // 物流轨迹查询
-            'get_tracking_orders' => 'API/GetTrackingOrder.asmx',
+            'get_tracking_orders' => 'API/GetTrackingOrder.asmx/GetTrackingOrders',
             // 发货人预报单操作
             'create_agent' => 'TRSAPI/Agent/CreateAgent',
             // 代理签出批次

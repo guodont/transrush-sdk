@@ -28,9 +28,10 @@ class WareHouseServiceUnitTest extends PHPUnit_Framework_TestCase
         self::$client->getEmitter()->attach($mock);
 
         self::$transRush = new \TransRush\TransRush([
-            'Token' => '104FC78C-7923-404C-82CF-CD88153912AG', // Please use your Token .
+//            'Token' => '104FC78C-7923-404C-82CF-CD88153912AG', // Please use your Token .
+            'Token' => '3E3CB737-FD2E-4699-9E25-66ADA387C37A', // Please use your Token .
             'Env' => 'DEV',
-            'Key' => '123456789',
+            'Key' => 'CD88153912AG',
         ]);
     }
 

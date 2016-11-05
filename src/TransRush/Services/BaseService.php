@@ -79,6 +79,11 @@ abstract class BaseService
             return Config::get('endpoints.dev_url');
         }
     }
+    
+    public function getEnv()
+    {
+        return $this->env;
+    }
 
 
     protected function createBaseRequest($accessToken, $method, $baseUrl) {
@@ -91,11 +96,11 @@ abstract class BaseService
     /**
      * Turns a ClientException into a CtctException - like magic.
      * @param ClientException $exception - Guzzle ClientException
-     * @return CtctException
+     * @return TransRushException
      */
     protected function convertException($exception)
     {
-        $ctctException = new CtctException($exception->getResponse()->getReasonPhrase(), $exception->getCode());
+        $ctctException = new TransRushException($exception->getResponse()->getReasonPhrase(), $exception->getCode());
         $ctctException->setUrl($exception->getResponse()->getEffectiveUrl());
         $ctctException->setErrors(json_decode($exception->getResponse()->getBody()->getContents()));
         return $ctctException;

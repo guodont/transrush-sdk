@@ -2,6 +2,7 @@
 
 namespace TransRush;
 use TransRush\Services\PreAlertService;
+use TransRush\Services\TrackingService;
 use TransRush\Services\WareHouseService;
 use TransRush\WebHooks\TransRushWebHookUtil;
 
@@ -22,6 +23,11 @@ class TransRush
      * @var WareHouseService
      */
     public $wareHouseService;
+    
+    /**
+     * @var TrackingService
+     */
+    public $trackingService;
 
     /**
      * @var TransRushWebHookUtil
@@ -37,6 +43,7 @@ class TransRush
         $this->preAlertService = new PreAlertService($settings);
         $this->wareHouseService = new WareHouseService($settings);
         $this->transRushWebHookUtil = new TransRushWebHookUtil($settings['Key']);
+        $this->trackingService = new TrackingService($settings);
     }
 
 
